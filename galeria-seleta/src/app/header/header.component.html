@@ -1,40 +1,73 @@
-<link rel="stylesheet" href="./header.component.css">
-
 <header class="header">
-    <div class="header-container">
-      
-      <!-- Busca -->
+
+  <!-- Linha 1: hamburger + busca | logo | ícones -->
+  <div class="header-top">
+
+    <div class="header-left">
+      <button class="icon-btn" aria-label="Menu">
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+      </button>
       <div class="search-box">
-        <span class="search-text">O que procura?</span>
-        <input type="text" placeholder="Buscar...">
+        <input type="text" placeholder="O que procura?" [(ngModel)]="termoBusca" />
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
       </div>
-
-      <!-- Logo -->
-      <div class="logo">
-        <span class="logo-icon">LOGO</span>
-        <span class="logo-text">Galeria Seleta</span>
-      </div>
-
-      <!-- Navegação -->
-      <nav class="nav">
-        <a href="#" class="nav-link">Novidades</a>
-        
-        <div class="dropdown">
-          <a href="#" class="nav-link dropdown-toggle">Produtos ▼</a>
-          <div class="dropdown-content">
-            <a href="#">Categoria 1</a>
-            <a href="#">Categoria 2</a>
-            <a href="#">Categoria 3</a>
-          </div>
-        </div>
-        
-        <a href="#" class="nav-link">Sobre Nós</a>
-      </nav>
-
     </div>
-  </header>
 
-  <!-- Conteúdo de exemplo (apenas para visualização) -->
-  <main style="padding: 2rem; text-align: center;">
-    <p>Conteúdo da página aqui</p>
-  </main>
+    <div class="logo">
+      <div class="logo-circle">LOGO</div>
+      <div class="logo-text">
+        <span class="logo-nome">Galeria</span>
+        <span class="logo-sub">Seleta</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button class="icon-btn" aria-label="Sacola">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <path d="M16 10a4 4 0 0 1-8 0" />
+        </svg>
+      </button>
+      <button class="icon-btn" aria-label="Minha conta">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Linha 2: navegação -->
+  <nav class="header-nav">
+    <a routerLink="/novidades" routerLinkActive="nav-active" class="nav-link">Novidades</a>
+
+    <div class="dropdown" (mouseenter)="dropdownAberto = true" (mouseleave)="dropdownAberto = false">
+      <a class="nav-link dropdown-toggle">
+        Produtos
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </a>
+      <div class="dropdown-menu" [class.aberto]="dropdownAberto">
+        @for (cat of categorias; track cat.id) {
+          <a routerLink="/produtos" [queryParams]="{ categoria: cat.slug }" class="dropdown-item">
+            {{ cat.nome }}
+          </a>
+        }
+      </div>
+    </div>
+
+    <a routerLink="/sobre" routerLinkActive="nav-active" class="nav-link">Sobre Nós</a>
+  </nav>
+
+</header>
