@@ -18,13 +18,13 @@
       </div>
     </div>
 
-    <div class="logo">
+    <a class="logo" routerLink="/" aria-label="Ir para a Home">
       <div class="logo-circle">LOGO</div>
       <div class="logo-text">
         <span class="logo-nome">Galeria</span>
         <span class="logo-sub">Seleta</span>
       </div>
-    </div>
+    </a>
 
     <div class="header-right">
       <button class="icon-btn" aria-label="Sacola">
@@ -48,7 +48,7 @@
 
   <!-- Linha 2: navegação -->
   <nav class="header-nav">
-    <a routerLink="/novidades" routerLinkActive="nav-active" class="nav-link">Novidades</a>
+    <a [routerLink]="['/']" fragment="novidades" class="nav-link">Novidades</a>
 
     <div class="dropdown" (mouseenter)="dropdownAberto = true" (mouseleave)="dropdownAberto = false">
       <a class="nav-link dropdown-toggle">

@@ -35,7 +35,7 @@
       <div class="produto-card" routerLink="/produtos/{{ produto.id }}">
 
         <div class="produto-imagem">
-          @if (produto.imagens && produto.imagens[0]?.url) {
+          @if (produto.imagens && produto.imagens[0].url) {
             <img [src]="produto.imagens[0].url" [alt]="produto.nome" />
           }
         </div>
