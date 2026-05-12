@@ -1,0 +1,174 @@
+@if (produto) {
+<div class="detalhe-page">
+
+  <!-- ── Breadcrumb ── -->
+  <nav class="breadcrumb">
+    <a routerLink="/">Início</a>
+    <span>/</span>
+    <a routerLink="/produtos">Produtos</a>
+    <span>/</span>
+    <a routerLink="/produtos" [queryParams]="{ categoria: produto.categoria_id }">{{ nomeCategoria }}</a>
+    <span>/</span>
+    <span class="breadcrumb-atual">{{ produto.nome }}</span>
+  </nav>
+
+  <!-- ── Hero do produto ── -->
+  <section class="produto-hero">
+
+    <!-- Imagem principal -->
+    <div class="produto-galeria">
+      <div class="imagem-principal">
+        @if (produto.imagens && produto.imagens[0].url) {
+          <img [src]="produto.imagens[0].url" [alt]="produto.nome" />
+        } @else {
+          <div class="img-placeholder"></div>
+        }
+        @if (temDesconto(produto)) {
+          <span class="badge-desconto">-{{ porcentagemDesconto(produto) }}%</span>
+        }
+        <span class="badge-condicao">{{ badgeCondicao(produto.condicao) }}</span>
+      </div>
+    </div>
+
+    <!-- Informações do produto -->
+    <div class="produto-info">
+
+      <p class="info-categoria">{{ nomeCategoria }}</p>
+      <h1 class="info-nome">{{ produto.nome }}</h1>
+
+      @if (produto.marca) {
+        <p class="info-marca">{{ produto.marca }}</p>
+      }
+
+      <!-- Preço -->
+      <div class="info-preco">
+        @if (temDesconto(produto)) {
+          <span class="preco-original">{{ produto.preco | currency:'BRL' }}</span>
+        }
+        <span class="preco-final" [class.com-desconto]="temDesconto(produto)">
+          {{ precoFinal(produto) | currency:'BRL' }}
+        </span>
+        @if (temDesconto(produto)) {
+          <span class="preco-economia">
+            Economia de {{ produto.preco - precoFinal(produto) | currency:'BRL' }}
+          </span>
+        }
+      </div>
+
+      <!-- Cor -->
+      <div class="info-campo">
+        <span class="campo-label">Cor</span>
+        <span class="campo-valor">{{ produto.cor }}</span>
+      </div>
+
+      <!-- Tamanhos -->
+      <div class="info-campo">
+        <span class="campo-label">Tamanho</span>
+        <div class="tamanhos-grid">
+          @for (t of produto.tamanhos; track t) {
+            <button
+              class="btn-tamanho"
+              [class.selecionado]="t === tamanhoSelecionado"
+              (click)="selecionarTamanho(t)">
+              {{ t }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <!-- Quantidade -->
+      <div class="info-campo">
+        <span class="campo-label">Quantidade</span>
+        <div class="quantidade-ctrl">
+          <button class="qty-btn" (click)="alterarQuantidade(-1)">−</button>
+          <span class="qty-valor">{{ quantidade }}</span>
+          <button class="qty-btn" (click)="alterarQuantidade(1)">+</button>
+        </div>
+        <span class="estoque-aviso">
+          @if (produto.estoque <= 3) {
+            🔥 Últimas {{ produto.estoque }} unidades
+          }
+        </span>
+      </div>
+
+      <!-- CTAs -->
+      <div class="info-ctas">
+        <button class="btn-carrinho" (click)="adicionarCarrinho()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          Adicionar ao Carrinho
+        </button>
+        <button class="btn-comprar" (click)="comprarAgora()">
+          Comprar Agora
+        </button>
+      </div>
+
+      <!-- Garantias -->
+      <ul class="garantias">
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Peça inspecionada e aprovada
+        </li>
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Embalagem sustentável
+        </li>
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          7 dias para troca ou devolução
+        </li>
+      </ul>
+
+    </div>
+  </section>
+
+  <!-- ── História da peça ── -->
+  <section class="historia-section">
+    <div class="historia-inner">
+      <h2 class="historia-titulo">A história desta peça</h2>
+      <p class="historia-texto">{{ produto.historico }}</p>
+    </div>
+  </section>
+
+  <!-- ── Mais da Galeria ── -->
+  @if (relacionados.length > 0) {
+    <section class="relacionados-section">
+      <h2 class="relacionados-titulo">Mais em <span>{{ nomeCategoria }}</span></h2>
+      <div class="relacionados-grid">
+        @for (rel of relacionados; track rel.id) {
+          <a class="rel-card" [routerLink]="['/produtos', rel.id]">
+            <div class="rel-imagem">
+              @if (rel.imagens && rel.imagens[0].url) {
+                <img [src]="rel.imagens[0].url" [alt]="rel.nome" />
+              }
+            </div>
+            <div class="rel-info">
+              <span class="rel-nome">{{ rel.nome }}</span>
+              <span class="rel-preco">{{ precoFinal(rel) | currency:'BRL' }}</span>
+            </div>
+          </a>
+        }
+      </div>
+    </section>
+  }
+
+</div>
+} @else {
+  <div class="nao-encontrado">
+    <p>Produto não encontrado.</p>
+    <a routerLink="/produtos">← Voltar para produtos</a>
+  </div>
+}
