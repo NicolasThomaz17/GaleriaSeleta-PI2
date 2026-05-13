@@ -15,7 +15,7 @@ export const PRODUTOS_MOCK: ProdutoDetalhe[] = [
     tamanhos: ['36', '38', '40'],
     cor: 'Azul índigo',
     condicao: 'muito bom',
-    imagens: [{ id: 1, produto_id: 1, url: 'roupas/calca.jpg', principal: true, ordem: 0 }]
+    imagens: [{ id: 1, produto_id: 1, url: '/roupas/calca.jpg', principal: true, ordem: 0 }]
   },
   {
     id: 2,
@@ -32,7 +32,7 @@ export const PRODUTOS_MOCK: ProdutoDetalhe[] = [
     cor: 'Preto carvão',
     marca: 'Não identificada',
     condicao: 'excelente',
-    imagens: [{ id: 2, produto_id: 2, url: 'roupas/calca2.jpg', principal: true, ordem: 0 }]
+    imagens: [{ id: 2, produto_id: 2, url: '/roupas/calca2.jpg', principal: true, ordem: 0 }]
   },
   {
     id: 3,
@@ -48,7 +48,7 @@ export const PRODUTOS_MOCK: ProdutoDetalhe[] = [
     tamanhos: ['P', 'M', 'G'],
     cor: 'Cinza claro',
     condicao: 'muito bom',
-    imagens: [{ id: 3, produto_id: 3, url: 'roupas/calca3.jpg', principal: true, ordem: 0 }]
+    imagens: [{ id: 3, produto_id: 3, url: '/roupas/calca3.jpg', principal: true, ordem: 0 }]
   },
   {
     id: 4,
@@ -64,7 +64,7 @@ export const PRODUTOS_MOCK: ProdutoDetalhe[] = [
     tamanhos: ['P', 'M', 'G', 'GG'],
     cor: 'Marsala',
     condicao: 'muito bom',
-    imagens: [{ id: 4, produto_id: 4, url: 'roupas/camisa.jpg', principal: true, ordem: 0 }]
+    imagens: [{ id: 4, produto_id: 4, url: '/roupas/camisa.jpg', principal: true, ordem: 0 }]
   },
   {
     id: 5,
@@ -80,7 +80,7 @@ export const PRODUTOS_MOCK: ProdutoDetalhe[] = [
     tamanhos: ['P', 'M', 'G', 'GG'],
     cor: 'Mescla cinza',
     condicao: 'bom',
-    imagens: [{ id: 5, produto_id: 5, url: 'roupas/camiseta-mescla.avif', principal: true, ordem: 0 }]
+    imagens: [{ id: 5, produto_id: 5, url: '/roupas/camiseta-mescla.avif', principal: true, ordem: 0 }]
   },
   {
     id: 6,
@@ -96,7 +96,7 @@ export const PRODUTOS_MOCK: ProdutoDetalhe[] = [
     tamanhos: ['M', 'G'],
     cor: 'Azul royal',
     condicao: 'excelente',
-    imagens: [{ id: 6, produto_id: 6, url: 'roupas/casaco.jpg', principal: true, ordem: 0 }]
+    imagens: [{ id: 6, produto_id: 6, url: '/roupas/casaco.jpg', principal: true, ordem: 0 }]
   },
   {
     id: 7,
@@ -113,7 +113,7 @@ export const PRODUTOS_MOCK: ProdutoDetalhe[] = [
     cor: 'Jeans claro',
     marca: 'Levi\'s',
     condicao: 'muito bom',
-    imagens: [{ id: 7, produto_id: 7, url: 'roupas/casaco2.jpg', principal: true, ordem: 0 }]
+    imagens: [{ id: 7, produto_id: 7, url: '/roupas/casaco2.jpg', principal: true, ordem: 0 }]
   },
   {
     id: 8,
@@ -129,7 +129,7 @@ export const PRODUTOS_MOCK: ProdutoDetalhe[] = [
     tamanhos: ['P', 'M', 'G'],
     cor: 'Vermelho intenso',
     condicao: 'muito bom',
-    imagens: [{ id: 8, produto_id: 8, url: 'roupas/casaco3.jpg', principal: true, ordem: 0 }]
+    imagens: [{ id: 8, produto_id: 8, url: '/roupas/casaco3.jpg', principal: true, ordem: 0 }]
   },
   {
     id: 9,
@@ -145,7 +145,7 @@ export const PRODUTOS_MOCK: ProdutoDetalhe[] = [
     tamanhos: ['P', 'M', 'G', 'GG'],
     cor: 'Preto absoluto',
     condicao: 'excelente',
-    imagens: [{ id: 9, produto_id: 9, url: 'roupas/images.jpg', principal: true, ordem: 0 }]
+    imagens: [{ id: 9, produto_id: 9, url: '/roupas/images.jpg', principal: true, ordem: 0 }]
   },
   {
     id: 10,
@@ -161,7 +161,7 @@ export const PRODUTOS_MOCK: ProdutoDetalhe[] = [
     tamanhos: ['M', 'G', 'GG'],
     cor: 'Branco off-white',
     condicao: 'excelente',
-    imagens: [{ id: 10, produto_id: 10, url: 'roupas/moletom.jpg', principal: true, ordem: 0 }]
+    imagens: [{ id: 10, produto_id: 10, url: '/roupas/moletom.jpg', principal: true, ordem: 0 }]
   },
   {
     id: 11,
@@ -177,7 +177,7 @@ export const PRODUTOS_MOCK: ProdutoDetalhe[] = [
     tamanhos: ['P', 'M', 'G', 'GG'],
     cor: 'Preto carvão',
     condicao: 'muito bom',
-    imagens: [{ id: 11, produto_id: 11, url: 'roupas/moletom2.jpg', principal: true, ordem: 0 }]
+    imagens: [{ id: 11, produto_id: 11, url: '/roupas/moletom2.jpg', principal: true, ordem: 0 }]
   },
   {
     id: 12,
@@ -193,6 +193,6 @@ export const PRODUTOS_MOCK: ProdutoDetalhe[] = [
     tamanhos: ['P', 'M'],
     cor: 'Azul navy',
     condicao: 'excelente',
-    imagens: [{ id: 12, produto_id: 12, url: 'roupas/vestido.jpg', principal: true, ordem: 0 }]
+    imagens: [{ id: 12, produto_id: 12, url: '/roupas/vestido.jpg', principal: true, ordem: 0 }]
   },
 ];

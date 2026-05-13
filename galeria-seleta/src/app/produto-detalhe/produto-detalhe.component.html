@@ -76,20 +76,7 @@
         </div>
       </div>
 
-      <!-- Quantidade -->
-      <div class="info-campo">
-        <span class="campo-label">Quantidade</span>
-        <div class="quantidade-ctrl">
-          <button class="qty-btn" (click)="alterarQuantidade(-1)">−</button>
-          <span class="qty-valor">{{ quantidade }}</span>
-          <button class="qty-btn" (click)="alterarQuantidade(1)">+</button>
-        </div>
-        <span class="estoque-aviso">
-          @if (produto.estoque <= 3) {
-            🔥 Últimas {{ produto.estoque }} unidades
-          }
-        </span>
-      </div>
+      
 
       <!-- CTAs -->
       <div class="info-ctas">

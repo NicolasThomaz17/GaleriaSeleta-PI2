@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, CommonModule, CurrencyPipe } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProdutoDetalhe } from '../core/models/produto-detalhe.model';
 import { Produto } from '../core/models/produto.model';
 import { PRODUTOS_MOCK } from '../core/mocks/produtos.mock';
@@ -23,6 +23,7 @@ export class ProdutoDetalheComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     @Inject(PLATFORM_ID) private platformId: object
   ) {}
 
@@ -74,17 +75,11 @@ export class ProdutoDetalheComponent implements OnInit {
     console.log('Adicionado ao carrinho:', {
       produto_id: this.produto?.id,
       tamanho: this.tamanhoSelecionado,
-      quantidade: this.quantidade
     });
   }
 
   comprarAgora(): void {
-    // TODO: redirecionar para checkout
-    console.log('Comprar agora:', {
-      produto_id: this.produto?.id,
-      tamanho: this.tamanhoSelecionado,
-      quantidade: this.quantidade
-    });
+    this.router.navigate(['/checkout']);
   }
 
   badgeCondicao(c: string): string {
