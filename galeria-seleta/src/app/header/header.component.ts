@@ -12,13 +12,4 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class HeaderComponent {
   termoBusca = '';
-  produtosAberto = false;
-
-  toggleProdutos(): void {
-    this.produtosAberto = !this.produtosAberto;
-  }
-
-  fecharDropdown(): void {
-    this.produtosAberto = false;
-  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -23,7 +23,36 @@ export class ProdutosComponent implements OnInit {
   filtroAberto = false;
   ordenacaoAberta = false;
 
+  constructor(private elRef: ElementRef) {}
+
   ngOnInit() {
+    this.aplicarFiltros();
+  }
+
+  /** Fecha qualquer dropdown ao clicar fora do componente */
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    if (!this.elRef.nativeElement.contains(event.target)) {
+      this.ordenacaoAberta = false;
+      this.filtroAberto = false;
+    }
+  }
+
+  toggleOrdenacao(event: MouseEvent) {
+    event.stopPropagation();
+    this.ordenacaoAberta = !this.ordenacaoAberta;
+    this.filtroAberto = false;           // fecha o outro
+  }
+
+  toggleFiltro(event: MouseEvent) {
+    event.stopPropagation();
+    this.filtroAberto = !this.filtroAberto;
+    this.ordenacaoAberta = false;        // fecha o outro
+  }
+
+  selecionarOrdenacao(valor: string) {
+    this.ordenacao = valor;
+    this.ordenacaoAberta = false;
     this.aplicarFiltros();
   }
 

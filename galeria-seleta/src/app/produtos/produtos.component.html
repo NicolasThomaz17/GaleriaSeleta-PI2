@@ -3,18 +3,18 @@
   <!-- Barra de controles -->
   <div class="controles">
 
-    <div class="dropdown-ctrl" (mouseenter)="ordenacaoAberta = true" (mouseleave)="ordenacaoAberta = false">
-      <button class="ctrl-btn">Organizar por +</button>
+    <div class="dropdown-ctrl">
+      <button class="ctrl-btn" (click)="toggleOrdenacao($event)">Organizar por +</button>
       <div class="dropdown-ctrl-menu" [class.aberto]="ordenacaoAberta">
-        <button (click)="ordenacao = 'padrao'; aplicarFiltros()">Padrão</button>
-        <button (click)="ordenacao = 'novidades'; aplicarFiltros()">Novidades</button>
-        <button (click)="ordenacao = 'menor-preco'; aplicarFiltros()">Menor preço</button>
-        <button (click)="ordenacao = 'maior-preco'; aplicarFiltros()">Maior preço</button>
+        <button (click)="selecionarOrdenacao('padrao')">Padrão</button>
+        <button (click)="selecionarOrdenacao('novidades')">Novidades</button>
+        <button (click)="selecionarOrdenacao('menor-preco')">Menor preço</button>
+        <button (click)="selecionarOrdenacao('maior-preco')">Maior preço</button>
       </div>
     </div>
 
-    <div class="dropdown-ctrl" (mouseenter)="filtroAberto = true" (mouseleave)="filtroAberto = false">
-      <button class="ctrl-btn">Filtrar por +</button>
+    <div class="dropdown-ctrl">
+      <button class="ctrl-btn" (click)="toggleFiltro($event)">Filtrar por +</button>
       <div class="dropdown-ctrl-menu direita" [class.aberto]="filtroAberto">
         <button (click)="selecionarCategoria(null)" [class.ativo]="categoriaSelecionada === null">
           Todos
